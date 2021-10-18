@@ -20,6 +20,7 @@ public class Sample1 {
         //open test homepage
         driver.get("https://google.com");
         driver.get("https://kristinek.github.io/site/");
+
         System.out.println(driver.findElement(By.id("h1")).getText());
         //get title of page
         System.out.println(driver.getTitle());
@@ -31,4 +32,27 @@ public class Sample1 {
         //Close browser
         driver.quit();
     }
+
+    @Test
+    public void goToHomepageVA() throws Exception {
+        //define driver
+        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        WebDriver driver = new ChromeDriver();
+
+        //open test homepage
+        driver.get("https://www.selenium.dev/downloads/");
+
+        System.out.println("");
+        //get title of page
+        System.out.println("Title of page:: "+driver.getTitle());
+        //get URL of current page
+        System.out.println("Current URL:: "+driver.getCurrentUrl());
+        //Sleep for 10 seconds
+        Thread.sleep(100);
+
+        //Close browser
+        driver.quit();
+    }
+
+
 }

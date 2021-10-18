@@ -2,6 +2,7 @@ package selenium.sample;
 
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -15,8 +16,26 @@ public class Sample1Task {
 //        TODO:
 //         define driver
 //         go to https://kristinek.github.io/site/index2.html
-//         get title of page
 //         get URL of current page
 //         close browser
+
+//         define driver
+        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        WebDriver driver = new ChromeDriver();
+
+        System.out.println("");
+
+//         go to https://kristinek.github.io/site/index2.html
+        driver.get("https://kristinek.github.io/site/index2.html");
+
+//         get title of page
+        System.out.println("Title of window:: "+driver.getTitle());
+
+        //         get URL of current page
+        System.out.println("Current URL:: "+driver.getCurrentUrl());
+
+        //Close browser
+        driver.quit();
+
     }
 }
