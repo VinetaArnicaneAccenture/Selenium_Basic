@@ -1,5 +1,9 @@
 package selenium.sample;
 
+//
+//  @author = Vineta Arnicane
+//
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,30 +29,38 @@ public class Sample2Task {
 
         //open page:
         driver.get("https://kristinek.github.io/site/examples/locators");
+        System.out.println("");
     }
 
     // method which is being run after each test
     @After
     public void endingTests() throws Exception {
         driver.quit();
+        System.out.println("");
     }
 
     @Test
     public void findElementByID() throws Exception {
 //         TODO:
 //         get text "Heading 2 text" using id
+        System.out.println(driver.findElement(By.id("heading_2")).getText());
+
     }
 
     @Test
     public void findElementByName() throws Exception {
 //         TODO:
 //         get attribute "id" and "value" of button "This is also a button" using name
+        System.out.println(driver.findElement(By.name("randomButton2")).getAttribute("id"));
+        System.out.println(driver.findElement(By.name("randomButton2")).getAttribute("value"));
     }
 
     @Test
     public void findElementByClassFirst() throws Exception {
 //         TODO:
 //         get first text of class "test" (should be "Test Text 1")
+        System.out.println(driver.findElement(By.className("test")).getText()); // "sample text 1"
+
     }
 
     @Test
@@ -57,5 +69,19 @@ public class Sample2Task {
 //         get size text of class "test" (should be 5)
 //         get text of class "test"
 //         get third text of class "test" (should be "Test Text 4")
+
+//         get size text of class "test" (should be 5)
+        System.out.println(driver.findElements(By.className("test")).size());
+
+        System.out.println("-----------------------");
+//         get text of class "test"
+        List<WebElement> allElementsWithClass = driver.findElements(By.className("test"));
+        for (WebElement elementWithClass : allElementsWithClass) {
+            System.out.println(elementWithClass.getText());
+        }
+
+        System.out.println("-----------------------");
+//         get third text of class "test" (should be "Test Text 4")
+        System.out.println(driver.findElements(By.className("test")).get(2).getText());
     }
 }
