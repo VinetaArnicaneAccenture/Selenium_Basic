@@ -40,5 +40,21 @@ public class Sample8Task {
 //        check the background of top 2 sections
 //        rgba(255, 221, 221, 1);
 //        check h1 element font-size 64px
+
+        WebElement section1 =driver.findElement(By.className("w3-light-grey"));//w3-light-grey w3-padding w3-margin-bottom w3-center
+        assertEquals("rgba(241, 241, 241, 1)", section1.getCssValue("background-color"));
+
+        WebElement section2 =driver.findElement(By.className("w3-pale-red"));  //w3-container w3-pale-red
+        assertEquals("rgba(255, 221, 221, 1)", section2.getCssValue("background-color"));
+
+        WebElement section3 =driver.findElement(By.className("w3-pale-yellow"));  //w3-container w3-pale-yellow
+        assertEquals("rgba(255, 255, 204, 1)", section3.getCssValue("background-color"));
+
+//        check h1 element font-size 64px
+        WebElement header = driver.findElement(By.xpath("//h1"));
+        assertEquals("64px", header.getCssValue("font-size"));
+
+
+
     }
 }
