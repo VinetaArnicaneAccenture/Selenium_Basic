@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import selenium.pages.FeedbackAnswerPage;
 import selenium.pages.FeedbackPage;
+import selenium.pages.FeedbackThankyouPage;
 
 import java.io.File;
 import java.util.Locale;
@@ -21,7 +22,7 @@ public class Task2 {
     WebDriver driver;
     static FeedbackPage feedbackPage;
     static FeedbackAnswerPage feedbackAnswerPage;
-
+    static FeedbackThankyouPage feedbackThankyouPage;
     @Before
     public void openPage() {
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
@@ -29,6 +30,9 @@ public class Task2 {
         driver = new ChromeDriver();
         driver.get("https://kristinek.github.io/site/tasks/provide_feedback");
         feedbackPage = PageFactory.initElements(driver, FeedbackPage.class);
+        feedbackAnswerPage = PageFactory.initElements(driver, FeedbackAnswerPage.class);
+        feedbackThankyouPage = PageFactory.initElements(driver, FeedbackThankyouPage.class);
+
     }
 
     @After
@@ -63,28 +67,14 @@ public class Task2 {
 
         feedbackPage.clickSend();
 
- //       feedbackAnswerPage = PageFactory.initElements(driver, FeedbackAnswerPage.class);
-
-//        feedbackAnswerPage.checkName("");
-  /*      feedbackAnswerPage.checkAge("");
+        feedbackAnswerPage.checkName("");
+        feedbackAnswerPage.checkAge("");
         feedbackAnswerPage.checkLanguage("");
         feedbackAnswerPage.checkGenre("null");
         feedbackAnswerPage.checkLike("null");
         feedbackAnswerPage.checkComment("");
         feedbackAnswerPage.checkYesButtonColors();
-        feedbackAnswerPage.checkNoButtonColors(); */
-
-        assertEquals("", driver.findElement(By.cssSelector("span#name")).getText());
-        assertEquals("", driver.findElement(By.cssSelector("span#age")).getText());
-        assertEquals("", driver.findElement(By.cssSelector("span#language")).getText());
-        assertEquals("null", driver.findElement(By.cssSelector("span#gender")).getText());
-        assertEquals("null", driver.findElement(By.cssSelector("span#option")).getText());
-        assertEquals("", driver.findElement(By.cssSelector("span#comment")).getText());
-
-        assertEquals("rgba(76, 175, 80, 1)", driver.findElement(By.cssSelector("button.w3-green")).getCssValue("background-color"));
-        assertEquals("rgba(244, 67, 54, 1)", driver.findElement(By.cssSelector("button.w3-red")).getCssValue("background-color"));
-        assertEquals("rgba(255, 255, 255, 1)", driver.findElement(By.cssSelector("button.w3-green")).getCssValue("color"));
-        assertEquals("rgba(255, 255, 255, 1)", driver.findElement(By.cssSelector("button.w3-red")).getCssValue("color"));
+        feedbackAnswerPage.checkNoButtonColors();
 
     }
 
@@ -110,17 +100,14 @@ public class Task2 {
         feedbackPage.enterComment(comment);
         feedbackPage.clickSend();
 
-        assertEquals(name, driver.findElement(By.cssSelector("span#name")).getText());
-        assertEquals(age, driver.findElement(By.cssSelector("span#age")).getText());
-        assertEquals("English,French,Spanish,Chinese", driver.findElement(By.cssSelector("span#language")).getText());
-        assertEquals(genre, driver.findElement(By.cssSelector("span#gender")).getText());
-        assertEquals(like, driver.findElement(By.cssSelector("span#option")).getText());
-        assertEquals(comment, driver.findElement(By.cssSelector("span#comment")).getText());
-
-        assertEquals("rgba(76, 175, 80, 1)", driver.findElement(By.cssSelector("button.w3-green")).getCssValue("background-color"));
-        assertEquals("rgba(244, 67, 54, 1)", driver.findElement(By.cssSelector("button.w3-red")).getCssValue("background-color"));
-        assertEquals("rgba(255, 255, 255, 1)", driver.findElement(By.cssSelector("button.w3-green")).getCssValue("color"));
-        assertEquals("rgba(255, 255, 255, 1)", driver.findElement(By.cssSelector("button.w3-red")).getCssValue("color"));
+        feedbackAnswerPage.checkName(name);
+        feedbackAnswerPage.checkAge(age);
+        feedbackAnswerPage.checkLanguage("English,French,Spanish,Chinese");
+        feedbackAnswerPage.checkGenre(genre);
+        feedbackAnswerPage.checkLike(like);
+        feedbackAnswerPage.checkComment(comment);
+        feedbackAnswerPage.checkYesButtonColors();
+        feedbackAnswerPage.checkNoButtonColors();
 
     }
 
@@ -136,12 +123,9 @@ public class Task2 {
         feedbackPage.enterName(name);
         feedbackPage.clickSend();
         driver.findElement(By.cssSelector("button.w3-green")).click();
-        assertEquals("Thank you, " + name +", for your feedback!", driver.findElement(By.cssSelector("h2#message")).getText());
 
-        WebElement answerBlock = driver.findElement(By.cssSelector("div.w3-green"));
-        assertEquals("rgba(76, 175, 80, 1)", answerBlock.getCssValue("background-color"));
-        assertEquals("rgba(255, 255, 255, 1)", answerBlock.getCssValue("color"));
-
+        feedbackThankyouPage.checkMessage("Thank you, " + name +", for your feedback!");
+        feedbackThankyouPage.checkMessageboxColors();
 
     }
 
@@ -155,12 +139,8 @@ public class Task2 {
         feedbackPage.clickSend();
         driver.findElement(By.cssSelector("button.w3-green")).click();
 
-        WebElement answer = driver.findElement(By.cssSelector("h2#message"));
-        assertEquals("Thank you for your feedback!", answer.getText());
-
-        WebElement answerBlock = driver.findElement(By.cssSelector("div.w3-green"));
-        assertEquals("rgba(76, 175, 80, 1)", answerBlock.getCssValue("background-color"));
-        assertEquals("rgba(255, 255, 255, 1)", answerBlock.getCssValue("color"));
+        feedbackThankyouPage.checkMessage("Thank you for your feedback!");
+        feedbackThankyouPage.checkMessageboxColors();
 
     }
 
@@ -187,9 +167,13 @@ public class Task2 {
 
         driver.findElement(By.cssSelector("button.w3-red")).click();
 
+
+        feedbackPage.checkName(name);
+        feedbackPage.checkAge(age);
         feedbackPage.checkIfSelectedAllLanguages();
         feedbackPage.checkGenre(genre);
+        feedbackPage.checkLikesOptionSelected(like);
+        feedbackPage.checkComment(comment);
 
-        //VA I can't check name, age and comment, because these texts are not in page css structure
     }
 }

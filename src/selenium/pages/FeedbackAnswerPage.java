@@ -14,10 +14,10 @@ import java.util.List;
 
 
 public class FeedbackAnswerPage extends GenericSamplePage {
-    @FindBy(how = How.ID, using = "span#name")
+    @FindBy(how = How.CSS, using = "span#name")
     private WebElement name;
 
-    @FindBy(how = How.ID, using = "span#age")
+    @FindBy(how = How.CSS, using = "span#age")
     private WebElement age;
 
     @FindBy(how = How.CSS, using = "span#language")

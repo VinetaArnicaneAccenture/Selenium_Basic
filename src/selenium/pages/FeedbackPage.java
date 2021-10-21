@@ -59,7 +59,7 @@ public class FeedbackPage extends GenericSamplePage {
     }
 
     public void checkName(String name) {
-        assertEquals(name, nameInput.getText());
+        assertEquals(name, nameInput.getAttribute("value") );
     }
 
     public void enterAge(String age) {
@@ -68,7 +68,7 @@ public class FeedbackPage extends GenericSamplePage {
     }
 
     public void checkAge(String age) {
-        assertEquals(age, ageInput.getText());
+        assertEquals(age, ageInput.getAttribute("value") );
     }
 
     public void selectAllLanguages() {
@@ -218,13 +218,18 @@ public class FeedbackPage extends GenericSamplePage {
         assertEquals("Choose your option", likesDropdown.getFirstSelectedOption().getText());
     }
 
+    public void checkLikesOptionSelected(String optionTxt) {
+        Select likesDropdown = new Select(toLikesDropdown);
+        assertEquals(optionTxt, likesDropdown.getFirstSelectedOption().getText());
+    }
+
     public void enterComment(String comment) {
         commentInput.clear();
         commentInput.sendKeys(comment);
     }
 
     public void checkComment(String comment) {
-        assertEquals(comment, commentInput.getText());
+        assertEquals(comment, commentInput.getAttribute("value"));
     }
 
 
