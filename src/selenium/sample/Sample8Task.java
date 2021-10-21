@@ -1,5 +1,7 @@
 package selenium.sample;
-
+//
+//  @author = Vineta Arnicane
+//
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -58,7 +58,7 @@ public class Sample4Task {
         String sendKeyOne = "99";
 
 //        enter a number under "Number"
-        numberInput.clear();   // clear the field befor to enter new value (it has default value)
+        numberInput.clear();   // clear the field before to enter new value (it has default value)
         numberInput.sendKeys(sendKeyOne);
 
 //        check that button is not clickable "Clear Result"
@@ -74,7 +74,7 @@ public class Sample4Task {
         assertTrue(resultText.isDisplayed());
 
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
-        assertEquals("You entered number: "+"\""+sendKeyOne +"\"", resultText.getText());
+        assertEquals("You entered number: " + "\"" + sendKeyOne + "\"", resultText.getText());
 
 //        check that the button "Clear Result" is clickable now
         assertTrue(clearResultButton.isEnabled()); // "Clear Result" button is enabled (clickable)
@@ -83,7 +83,7 @@ public class Sample4Task {
         clearResultButton.click(); // clicking on "Clear Result" button
 
 //        check that the text is still (""), but it is not displayed
-        assertEquals(resultText.getText(), ""); // checking that text is empty
+        assertEquals("", resultText.getText()); // checking that text is empty
         assertFalse(resultText.isDisplayed());        // checking that text is not displayed
 
     }
